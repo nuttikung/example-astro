@@ -1,0 +1,35 @@
+---
+export type Props = {
+  image?: string;
+  title: string;
+  content: string;
+  tags: string[];
+};
+
+const { image, title, content, tags } = Astro.props;
+---
+
+<div class="max-w-sm rounded overflow-hidden shadow-lg">
+  {image && <img class="w-full" src={image} alt="Sunset in the mountains" />}
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2">{title}</div>
+    <p class="text-gray-700 text-base">
+      {content}
+    </p>
+  </div>
+  <div class="px-6 pt-4 pb-2">
+    {
+      tags.map((tag, index, selfTags) =>
+        index === selfTags.length - 1 ? (
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            {tag}
+          </span>
+        ) : (
+          <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+            {tag}
+          </span>
+        )
+      )
+    }
+  </div>
+</div>
